@@ -13,7 +13,7 @@ async function bootstrap() {
     options: {
       package: 'auth',
       protoPath: join(__dirname, 'protos/users.proto'),
-      url: 'localhost:50051',
+      url: 'localhost:50052',
     },
   });
   await app.startAllMicroservices();

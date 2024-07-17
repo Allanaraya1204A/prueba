@@ -1,3 +1,4 @@
+// auth.controller.ts
 import { Controller } from '@nestjs/common';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
 import { AuthService } from './auth.service';
@@ -26,7 +27,7 @@ export class AuthController {
 
     try {
       await this.authService.register(username, email, password);
-      return { message: 'User registered successfully' };
+      return { message: 'User registered successfully, check your email for the verification code' };
     } catch (error) {
       throw new RpcException(error.message);
     }

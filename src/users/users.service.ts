@@ -7,23 +7,39 @@ import { User } from '@prisma/client';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  async register(username: string, email: string, password: string): Promise<User> {
+  async register(
+    username: string,
+    email: string,
+    password: string,
+    nombre?: string,
+    apellido?: string,
+    telefono?: string,
+    direccion?: string,
+    referencias?: string,
+    tipo?: string,
+  ): Promise<User> {
     try {
       // Hasheamos la contraseña antes de registrar al usuario
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-
+  
       console.log(`Password hashed: ${hashedPassword}`); // Mostrar la contraseña encriptada por consola para probar
-
-      // Creamos el usuario en la base de datos utilizando Prisma orm 
+  
+      // Creamos el usuario en la base de datos utilizando Prisma ORM 
       const newUser = await this.prisma.user.create({
         data: {
           username,
           email,
           password: hashedPassword,
+          nombre,
+          apellido,
+          telefono,
+          direccion,
+          referencias,
+          tipo,
         },
       });
-
+  
       return newUser; // Devolvemos el nuevo usuario creado
     } catch (error) {
       throw new Error(`Fallo al registrar usuario: ${error.message}`);

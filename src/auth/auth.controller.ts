@@ -1,7 +1,7 @@
-// auth.controller.ts
 import { Controller } from '@nestjs/common';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
 import { AuthService } from './auth.service';
+import { RegisterRequest, RegisterResponse } from './register.interfase'; 
 
 @Controller('auth')
 export class AuthController {
@@ -23,11 +23,11 @@ export class AuthController {
 
   @GrpcMethod('AuthService', 'Register')
   async register(data: RegisterRequest): Promise<RegisterResponse> {
-    const { username, email, password } = data;
+    const { username, email, password, nombre, apellido, telefono, direccion, referencias, tipo } = data;
 
     try {
-      await this.authService.register(username, email, password);
-      return { message: 'User registered successfully, check your email for the verification code' };
+      await this.authService.register(username, email, password, nombre, apellido, telefono, direccion, referencias, tipo);
+      return { message: 'User registered successfully' };
     } catch (error) {
       throw new RpcException(error.message);
     }

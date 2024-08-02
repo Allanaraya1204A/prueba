@@ -6,7 +6,7 @@ import { join } from 'path';
 
 
 async function bootstrap() {
-  dotenv.config();
+  dotenv.config({ path: './.env' });
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,

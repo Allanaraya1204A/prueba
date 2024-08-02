@@ -20,10 +20,14 @@ message RegisterRequest {
   string username = 1;
   string email = 2;
   string password = 3;
+  string nombre = 4;
+  string apellido = 5;
+  string telefono = 6;
+  string direccion = 7;
+  string referencias = 8;
+  string tipo = 9;
 }
-
 
 message RegisterResponse {
   string message = 1;
 }
-

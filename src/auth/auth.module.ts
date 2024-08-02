@@ -6,7 +6,8 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { EmailService } from './email.service';
 
-
+import * as dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
 
 @Module({
   imports: [

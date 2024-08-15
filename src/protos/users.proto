@@ -5,6 +5,7 @@ package auth;
 service AuthService {
   rpc Login(LoginRequest) returns (LoginResponse);
   rpc Register(RegisterRequest) returns (RegisterResponse);
+ 
 }
 
 message LoginRequest {
@@ -31,3 +32,9 @@ message RegisterRequest {
 message RegisterResponse {
   string message = 1;
 }
+
+
+
+
+
+

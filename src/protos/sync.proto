@@ -1,0 +1,20 @@
+// src/sync/proto/sync.proto
+
+syntax = "proto3";
+
+package sync;
+
+// Definición del servicio SyncService
+service SyncService {
+  rpc SayHello(SyncRequest) returns (SyncResponse);
+}
+
+// Mensaje de solicitud para SayHello
+message SyncRequest {
+  string name = 1;
+}
+
+// Mensaje de respuesta para SayHello
+message SyncResponse {
+  string message = 1;
+}

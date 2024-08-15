@@ -19,13 +19,10 @@ export class UsersService {
     tipo?: string,
   ): Promise<User> {
     try {
-      // Hasheamos la contraseña antes de registrar al usuario
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-  
-      console.log(`Password hashed: ${hashedPassword}`); // Mostrar la contraseña encriptada por consola para probar
-  
-      // Creamos el usuario en la base de datos utilizando Prisma ORM 
+
+      // Creamos el usuario en la base de datos utilizando Prisma ORM
       const newUser = await this.prisma.user.create({
         data: {
           username,
@@ -39,8 +36,9 @@ export class UsersService {
           tipo,
         },
       });
-  
-      return newUser; // Devolvemos el nuevo usuario creado
+
+      // Devolvemos el usuario con la contraseña codificada
+      return newUser;
     } catch (error) {
       throw new Error(`Fallo al registrar usuario: ${error.message}`);
     }

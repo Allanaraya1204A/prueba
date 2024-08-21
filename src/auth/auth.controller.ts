@@ -7,8 +7,9 @@ import { RegisterRequest, RegisterResponse } from './register.interfase';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+ 
   @GrpcMethod('AuthService', 'Login')
-  async login(data: any): Promise<{ accesstoken: string }> {
+  async login(data: any): Promise<{ accesstoken: string; id: number }> {
     const { email, password } = data;
     console.log(`Attempting login with email: ${email}, password: ${password}`);
 
@@ -17,9 +18,17 @@ export class AuthController {
       throw new RpcException('Invalid credentials');
     }
 
-    const token = await this.authService.login(user);
-    return { accesstoken: token }; 
+    return this.authService.login(user);
   }
+
+
+
+
+
+
+
+
+
 
   @GrpcMethod('AuthService', 'Register')
   async register(data: RegisterRequest): Promise<RegisterResponse> {

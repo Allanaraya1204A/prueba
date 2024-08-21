@@ -15,7 +15,9 @@ message LoginRequest {
 
 message LoginResponse {
   string accesstoken = 1;
+  int32 id = 2; // Añadido para devolver el ID del usuario
 }
+
 
 message RegisterRequest {
   string username = 1;
